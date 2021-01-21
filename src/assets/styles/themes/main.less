@@ -1,0 +1,125 @@
+@import '../../fonts/ttfont.css';
+@import 'vars.less';
+
+//@body-background: linear-gradient(180deg, #F3F3FB 0%, #fdfbfd 100%);
+
+//@text-color: #707C97;
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'TT Norms', sans-serif;
+  font-style: normal;
+  color: @text-color;
+}
+
+#root, html, body, .main {
+  height: 100vh;
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background: linear-gradient(92.68deg, #7CB8F7 0%, #2A8BF2 100%);
+  box-shadow: 6px 6px 25px rgba(42, 139, 242, 0.15), 4px 4px 25px rgba(42, 139, 242, 0.05), 10px 6px 25px rgba(42, 139, 242, 0.15);
+  border-radius: 6px;
+  width: 240px;
+  height: 40px;
+  font-size: unset;
+  border: unset;
+}
+
+
+.main {
+  display: flex;
+}
+.container {
+  //background: linear-gradient(180deg, #F3F3FB 0%, #fdfbfd 100%);
+  background: @container-background;
+  width: 100%;
+  font-size: 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+}
+
+.nav_bar {
+  height: inherit;
+  max-width: 290px;
+  width: 100%;
+  z-index: 100;
+  box-shadow: @nav-box-shadow;
+  &__logo_container {
+    padding: 80px 40px 40px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__logo {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.login {
+  background: transparent;
+  padding: 25px;
+}
+
+.wrapper {
+  margin: 20px 20%;
+}
+
+.search_form {
+  background: @second-container-background;
+  border-radius: 6px;
+  padding: 25px;
+
+  label {
+    &.ant-radio-button-wrapper-disabled.ant-radio-button-wrapper-checked {
+      background: @disabled-bg;
+    }
+    &:last-child {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__target, &__theme {
+    display: flex;
+    & label {
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  &__searches {
+    display: flex;
+  }
+  &__answers {
+    flex:1;
+  }
+
+  &__fields_title {
+    margin: 10px auto;
+  }
+
+  &__age {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      margin: 5px 0;
+    }
+  }
+}
+
