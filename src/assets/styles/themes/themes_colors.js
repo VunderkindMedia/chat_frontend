@@ -9,6 +9,7 @@ export const lightTheme = {
   '@disabled-bg': '#e9e9e9',
   '@disabled-color': 'rgba(0,0,0, .65)',
   '@nav-box-shadow': '14.0351px 0px 25px rgba(86, 128, 248, 0.03), 35.0877px 0px 70px rgba(86, 128, 248, 0.05), 23.8596px 5.61404px 50px rgba(0, 0, 0, 0.02)',
+  '@border_custom': 'rgba(112, 124, 151, 0.15)'
   // '@popover-background': '#303030',
   // '@border-color-base': '#6f6c6c',
   // '@border-color-split': '#424242',
@@ -29,4 +30,5 @@ export const darkThemes = {
   '@disabled-bg': '#535252',
   '@disabled-color': '#9e9e9e',
   '@nav-box-shadow': 'unset',
+  '@border_custom': '#656565'
 }

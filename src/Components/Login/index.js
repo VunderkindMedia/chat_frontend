@@ -1,24 +1,25 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Radio, Button, Checkbox} from 'antd';
+import React, {useContext, useEffect, useState} from 'react';
+import { Radio, Button, Checkbox } from 'antd';
 import { lightTheme, darkThemes } from '../../assets/styles/themes/themes_colors';
 import Text from 'antd/es/typography/Text';
-
+import {AppContext} from '../../context/AppContext';
 export const Login = () => {
 
-  const [fieldsValue, setFieldsValue] = useState({me_sex: 0, member_sex: 0});
-  const [theme, setTheme] = useState('light');
+  const { connect } = useContext(AppContext);
 
-  const member_sex_radio = useRef(null);
+  const [fieldsValue, setFieldsValue] = useState({target: 'normal', me_sex: 0, member_sex: 0, me_age: null, member_age: []});
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(()=> {
-    // window.less
-    //     .modifyVars(theme === 'light' ? lightTheme : darkThemes)
-    //     .then(() => {
-    //
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
+    console.log(theme);
+    window.less
+        .modifyVars(theme === 'light' ? lightTheme : darkThemes)
+        .then(() => {
+          localStorage.setItem('theme', theme);
+        })
+        .catch(error => {
+          console.error(error);
+        });
   },[theme])
   const onChangeField = (e) => {
     setFieldsValue(prevState=> ({
@@ -26,18 +27,21 @@ export const Login = () => {
       [e.target.name]: e.target.value
     }))
   }
-
   const toggleTheme = (value) => {
     setTheme(value)
   }
 
+  const toggleForm = () => {
+    connect(fieldsValue);
+  }
+
   return (
-      <div className={'login'}>
-        <Text className={'subtitle login__subtitle'}>Введите данные для поиска собеседника:</Text>
+      <div className='login'>
+        <Text className={'wrapper subtitle login__subtitle'}>Введите данные для поиска собеседника:</Text>
         <div className="wrapper">
           <form action="#" className="search_form">
             <Text>Тема общения:</Text>
-            <Radio.Group name='target' className={'search_form__target'} size="medium" onChange={onChangeField}>
+            <Radio.Group name='target' defaultValue={'normal'} className={'search_form__target'} size="medium" onChange={onChangeField}>
               <Radio.Button style={{marginRight: 10}} value="normal">Общение</Radio.Button>
               <Radio.Button style={{marginLeft: 10}} value="flirt">Флирт 18+</Radio.Button>
             </Radio.Group>
@@ -68,7 +72,7 @@ export const Login = () => {
                 </Radio.Group>
 
                 <p className='search_form__fields_title'>Возраст собеседника:</p>
-                <Checkbox.Group ref={member_sex_radio} className='search_form__age' name='member_age' size="medium" onChange={(value)=> {
+                <Checkbox.Group className='search_form__age' name='member_age' size="medium" onChange={(value)=> {
                   onChangeField({
                     target: {
                       value: value,
@@ -84,13 +88,13 @@ export const Login = () => {
                 </Checkbox.Group>
               </div>
             </div>
-            <p>Цветовая схема:</p>
-            <Radio.Group className={'search_form__theme'} size="medium" onChange={(e)=>{ toggleTheme(e.target.value)}}>
+            <p className='search_form__fields_title'>Цветовая схема:</p>
+            <Radio.Group className={'search_form__theme'} defaultValue={localStorage.getItem('theme') || 'dark'} size="medium" onChange={(e)=>{ toggleTheme(e.target.value)}}>
               <Radio.Button style={{marginRight: 10}} value="light">Светлая</Radio.Button>
               <Radio.Button style={{marginLeft: 10}} value="dark">Темная</Radio.Button>
             </Radio.Group>
             <div className="center">
-              <Button type="primary" className='button search_form__submit_btn' loading={true} onClick={()=>{}}>
+              <Button type="primary" className='button search_form__submit_btn' loading={false} onClick={()=>{toggleForm()}}>
                 Искать собеседника
               </Button>
             </div>

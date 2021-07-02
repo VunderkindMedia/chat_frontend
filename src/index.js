@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import {Index} from './Components';
 import './assets/styles/themes/main.less';
+import {AppState} from './context/AppState';
 
 ReactDOM.render(
   <React.StrictMode>
+    <AppState>
       <Index />
+    </AppState>
   </React.StrictMode>,
   document.getElementById('root')
 );
